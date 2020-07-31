@@ -1,0 +1,18 @@
+for region in `aws ec2 describe-regions --output text | cut -f4`
+	do
+	  echo $region
+	  echo BYOL
+	  aws ec2 describe-images --region $region --filters "Name=name,Values=CudaW*fw10.1*BYOL*" --query 'sort_by(Images, &CreationDate)[].ImageId' 
+	  echo PAYG
+	  aws ec2 describe-images --region $region --filters "Name=name,Values=CudaW*fw10.1*PAYG*" --query 'sort_by(Images, &CreationDate)[].ImageId'	  
+done
+echo " "
+echo "PAYG Image ID's by Region"
+echo  ----------------------------------------------------
+for region in `aws ec2 describe-regions --output text | cut -f4`
+	do
+	  echo " "
+	  echo =====================
+	  echo $region
+	  aws ec2 describe-images --region $region --filters "Name=name,Values=CudaW*fw10.1*PAYG*" --query 'sort_by(Images, &CreationDate)[].ImageId' 
+done
