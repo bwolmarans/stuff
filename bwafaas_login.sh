@@ -1,4 +1,5 @@
 [centos@ip-10-0-1-234 ~]$ cat bwafaas_login.sh
+# YOU HAVE TO SOURCE THIS FILE NOT EXECUTRE IT OR ELSE IT WILL NOT SET THE ENVIRONMENT VARIABLE
 echo ""
 echo email=$1
 echo password=$2
