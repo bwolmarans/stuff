@@ -12,12 +12,8 @@ Application: new app 10624
         Server: Default (HTTPS 1.1.1.1:443)
 Application: new app 10625
         Server: Default (HTTPS 1.1.1.1:443)
-https://api.waas.barracudanetworks.com/v2/waasapi/applications/10625/allow_deny/urls/
-{ "enabled": true, "name": "bbbblock-themes-CVE-2021-26855", "deny_response": "Response Page", "response_page": "default", "action": "Process", "url_match": "/bbbowa/auth/Current/themes/resources", "follow_up_action_time": 1, "host_match": "*", "allow_deny_rule": "string", "redirect_url": "string", "extended_match": "(Method eq POST) && (Header  User-Agent rco \".*(DuckDuckBot|facebookexternalhit|Baiduspider|Bingbot|Googlebot|Konqueror|Yahoo|YandexBot|antSword).*\")", "follow_up_action": "None", "priority": 3}
 {u'non_field_errors': [u'The fields allow_deny_rule, url_match, host_match, priority must make a unique set.']}
 400
-  
-  
   
   
   
@@ -52,12 +48,7 @@ def waas_api_get(token, path):
         return res.json()
 
 def waas_api_post(token, path, mydata):
-        #print(API_BASE)
-        #print(urljoin(API_BASE, path));
-        print(path)
-        print(mydata)
         res = requests.post(urljoin(API_BASE, path), headers={"Content-Type": "application/json", "Accept": "application/json",'auth-api': token}, data=mydata, proxies=proxies)
-        #requests.post(adr_base_url, headers=my_headers, data=global_acl )
         print(res.json())
         res.raise_for_status()
         return res.json()
