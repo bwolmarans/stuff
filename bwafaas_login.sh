@@ -7,9 +7,6 @@
 # Note: YOU HAVE TO SOURCE THIS FILE NOT EXECUTRE IT OR ELSE IT WILL NOT SET THE ENVIRONMENT VARIABLE
 #
 echo ""
-echo email=$1
-echo password=$2
-echo ""
 export WAAS_API_KEY=`curl "https://api.waas.barracudanetworks.com/v2/waasapi/api_login/" -X POST -d "email=$1&password=$2" | grep -Po '"key": *\K"[^"]*"' | sed -e 's/^"//' -e 's/"$//'`
 echo ""
 echo "Assuming you sourced this script, this script has set an environment variable named WAAS_API_KEY as follows:"
